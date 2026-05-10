@@ -3,79 +3,317 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MON4RX</title>
 
 <style>
-body{
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
     height:100vh;
+
     overflow:hidden;
-    font-family:Arial;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
+    font-family:Arial, sans-serif;
+
     color:white;
 
     background-image:
-    linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.72)),
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
     url("https://i.imgur.com/bupYX8o.png");
 
     background-size:cover;
     background-position:center;
+    background-repeat:no-repeat;
+
+    position:relative;
 }
+
+/* PARTICLES */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:200%;
+    height:200%;
+
+    background-image:
+    radial-gradient(#ff008c55 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    animation:moveParticles 22s linear infinite;
+
+    opacity:0.22;
+}
+
+/* CONTAINER */
 
 .container{
+
+    width:100%;
+    max-width:450px;
+
     text-align:center;
+
+    position:relative;
+
+    z-index:2;
+
+    padding:20px;
 }
+
+/* AVATAR */
+
+.avatar{
+
+    width:145px;
+    height:145px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #ff008c;
+
+    margin-top:25px;
+
+    margin-bottom:28px;
+
+    box-shadow:
+    0 0 18px #ff008c,
+    0 0 38px #ff008c;
+
+    animation:float 5s ease-in-out infinite;
+}
+
+/* TITLE */
 
 h1{
-    font-size:80px;
+
+    font-size:68px;
+
     color:#ff008c;
-    text-shadow:0 0 20px #ff008c;
-    margin-bottom:10px;
+
+    letter-spacing:4px;
+
+    margin-bottom:12px;
+
+    animation:glow 5s ease-in-out infinite;
 }
 
-p{
-    opacity:0.7;
-    margin-bottom:40px;
+/* SUBTITLE */
+
+.subtitle{
+
+    font-size:18px;
+
+    opacity:0.88;
+
+    margin-bottom:42px;
+
+    letter-spacing:2px;
 }
+
+/* BUTTONS */
 
 .buttons{
+
     display:flex;
     flex-direction:column;
-    gap:15px;
+
+    gap:18px;
 }
 
 a{
+
     text-decoration:none;
+
     color:white;
+
+    font-size:20px;
+
+    padding:18px;
+
+    border-radius:18px;
+
     border:2px solid #ff008c;
-    padding:15px 40px;
-    border-radius:15px;
-    transition:0.3s;
-    background:rgba(255,0,140,0.1);
+
+    background:rgba(0,0,0,0.42);
+
+    backdrop-filter:blur(8px);
+
+    transition:0.35s ease;
+
+    box-shadow:
+    0 0 10px rgba(255,0,140,0.22);
 }
 
+/* HOVER */
+
 a:hover{
+
     background:#ff008c;
-    box-shadow:0 0 25px #ff008c;
-    transform:scale(1.05);
+
+    transform:scale(1.04);
+
+    box-shadow:
+    0 0 20px #ff008c,
+    0 0 45px #ff008c;
 }
+
+/* DONATE BUTTON */
+
+.donate{
+
+    background:
+    linear-gradient(90deg,
+    rgba(255,0,140,0.22),
+    rgba(255,0,140,0.35));
+
+    box-shadow:
+    0 0 15px rgba(255,0,140,0.45),
+    0 0 30px rgba(255,0,140,0.2);
+
+    animation:donateGlow 4s ease-in-out infinite;
+}
+
+/* FOOTER */
+
+.footer{
+
+    margin-top:35px;
+
+    opacity:0.68;
+
+    letter-spacing:3px;
+}
+
+/* ANIMATIONS */
+
+@keyframes glow{
+
+    0%{
+        text-shadow:
+        0 0 10px #ff008c,
+        0 0 20px #ff008c;
+    }
+
+    50%{
+        text-shadow:
+        0 0 18px #ff008c,
+        0 0 32px #ff008c,
+        0 0 55px #ff008c;
+    }
+
+    100%{
+        text-shadow:
+        0 0 10px #ff008c,
+        0 0 20px #ff008c;
+    }
+}
+
+@keyframes donateGlow{
+
+    0%{
+        box-shadow:
+        0 0 12px rgba(255,0,140,0.35);
+    }
+
+    50%{
+        box-shadow:
+        0 0 24px rgba(255,0,140,0.7),
+        0 0 40px rgba(255,0,140,0.3);
+    }
+
+    100%{
+        box-shadow:
+        0 0 12px rgba(255,0,140,0.35);
+    }
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+@keyframes moveParticles{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(-90px,-90px);
+    }
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1>MON4RX</h1>
-    <p>404 mental not found</p>
 
-    <div class="buttons">
-        <a href="#">YouTube</a>
-        <a href="#">TikTok</a>
-        <a href="#">Twitch</a>
-        <a href="#">Telegram</a>
-    </div>
+<img class="avatar" src="https://i.imgur.com/bwo97U8.png">
+
+<h1>MON4RX</h1>
+
+<p class="subtitle">
+404 mental not found
+</p>
+
+<div class="buttons">
+
+<a href="https://youtube.com">
+YouTube
+</a>
+
+<a href="https://tiktok.com/@monarx404">
+TikTok
+</a>
+
+<a href="https://twitch.tv">
+Twitch
+</a>
+
+<a href="https://t.me">
+Telegram
+</a>
+
+<a class="donate" href="https://donate.stream">
+💖 Donate
+</a>
+
+</div>
+
+<div class="footer">
+404 SQUAD
+</div>
+
 </div>
 
 </body>
