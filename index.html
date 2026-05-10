@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>MON4RX</title>
 
@@ -14,29 +15,31 @@
     box-sizing:border-box;
 }
 
-body{
-
-    height:100vh;
-
+html,body{
+    width:100%;
+    height:100%;
     overflow:hidden;
+}
+
+body{
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 
     color:white;
 
-    background-image:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    position:relative;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
     url("https://i.imgur.com/bupYX8o.png");
 
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
-
-    position:relative;
 }
 
 /* PARTICLES */
@@ -47,41 +50,42 @@ body::before{
 
     position:absolute;
 
-    width:200%;
-    height:200%;
+    inset:0;
 
     background-image:
-    radial-gradient(#ff008c55 1px, transparent 1px);
+    radial-gradient(#ff008c55 1px,transparent 1px);
 
     background-size:42px 42px;
 
-    animation:moveParticles 22s linear infinite;
+    animation:particles 22s linear infinite;
 
     opacity:0.22;
+
+    pointer-events:none;
 }
 
-/* CONTAINER */
+/* MAIN */
 
 .container{
 
     width:100%;
-    max-width:450px;
+    max-width:440px;
+
+    padding:25px;
 
     text-align:center;
 
     position:relative;
 
     z-index:2;
-
-    padding:20px;
 }
 
 /* AVATAR */
 
 .avatar{
 
-    width:145px;
-    height:145px;
+    width:135px;
+    height:135px;
 
     border-radius:50%;
 
@@ -89,13 +93,12 @@ body::before{
 
     border:3px solid #ff008c;
 
-    margin-top:25px;
-
-    margin-bottom:28px;
+    margin-top:15px;
+    margin-bottom:25px;
 
     box-shadow:
-    0 0 18px #ff008c,
-    0 0 38px #ff008c;
+    0 0 20px #ff008c,
+    0 0 40px #ff008c;
 
     animation:float 5s ease-in-out infinite;
 }
@@ -104,7 +107,7 @@ body::before{
 
 h1{
 
-    font-size:68px;
+    font-size:64px;
 
     color:#ff008c;
 
@@ -162,8 +165,6 @@ a{
     0 0 10px rgba(255,0,140,0.22);
 }
 
-/* HOVER */
-
 a:hover{
 
     background:#ff008c;
@@ -175,18 +176,15 @@ a:hover{
     0 0 45px #ff008c;
 }
 
-/* DONATE BUTTON */
+/* DONATE */
 
 .donate{
 
     background:
-    linear-gradient(90deg,
-    rgba(255,0,140,0.22),
+    linear-gradient(
+    90deg,
+    rgba(255,0,140,0.18),
     rgba(255,0,140,0.35));
-
-    box-shadow:
-    0 0 15px rgba(255,0,140,0.45),
-    0 0 30px rgba(255,0,140,0.2);
 
     animation:donateGlow 4s ease-in-out infinite;
 }
@@ -195,11 +193,13 @@ a:hover{
 
 .footer{
 
-    margin-top:35px;
+    margin-top:32px;
 
-    opacity:0.68;
+    opacity:0.65;
 
     letter-spacing:3px;
+
+    font-size:14px;
 }
 
 /* ANIMATIONS */
@@ -215,33 +215,14 @@ a:hover{
     50%{
         text-shadow:
         0 0 18px #ff008c,
-        0 0 32px #ff008c,
-        0 0 55px #ff008c;
+        0 0 38px #ff008c,
+        0 0 60px #ff008c;
     }
 
     100%{
         text-shadow:
         0 0 10px #ff008c,
         0 0 20px #ff008c;
-    }
-}
-
-@keyframes donateGlow{
-
-    0%{
-        box-shadow:
-        0 0 12px rgba(255,0,140,0.35);
-    }
-
-    50%{
-        box-shadow:
-        0 0 24px rgba(255,0,140,0.7),
-        0 0 40px rgba(255,0,140,0.3);
-    }
-
-    100%{
-        box-shadow:
-        0 0 12px rgba(255,0,140,0.35);
     }
 }
 
@@ -260,7 +241,7 @@ a:hover{
     }
 }
 
-@keyframes moveParticles{
+@keyframes particles{
 
     from{
         transform:translate(0,0);
@@ -271,6 +252,44 @@ a:hover{
     }
 }
 
+@keyframes donateGlow{
+
+    0%{
+        box-shadow:
+        0 0 12px rgba(255,0,140,0.3);
+    }
+
+    50%{
+        box-shadow:
+        0 0 25px rgba(255,0,140,0.7),
+        0 0 45px rgba(255,0,140,0.35);
+    }
+
+    100%{
+        box-shadow:
+        0 0 12px rgba(255,0,140,0.3);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    h1{
+        font-size:52px;
+    }
+
+    .avatar{
+        width:120px;
+        height:120px;
+    }
+
+    a{
+        font-size:18px;
+        padding:16px;
+    }
+}
+
 </style>
 </head>
 
@@ -278,7 +297,8 @@ a:hover{
 
 <div class="container">
 
-<img class="avatar" src="https://i.imgur.com/bwo97U8.png">
+<img class="avatar"
+src="https://i.imgur.com/bwo97U8.png">
 
 <h1>MON4RX</h1>
 
@@ -288,23 +308,28 @@ a:hover{
 
 <div class="buttons">
 
-<a href="https://youtube.com">
+<a href="https://youtube.com/@mon4rx_404?si=uBJApwrdJetj6oLw"
+target="_blank">
 YouTube
 </a>
 
-<a href="https://tiktok.com/@monarx404">
+<a href="https://www.tiktok.com/@monarx404?_r=1&_t=ZS-96ENiIWin1o"
+target="_blank">
 TikTok
 </a>
 
-<a href="https://twitch.tv">
+<a href="https://www.twitch.tv/mon4rx_404"
+target="_blank">
 Twitch
 </a>
 
-<a href="https://t.me">
+<a href="https://t.me/mon4rx_squad"
+target="_blank">
 Telegram
 </a>
 
-<a class="donate" href="https://donate.stream">
+<a class="donate"
+href="#">
 💖 Donate
 </a>
 
