@@ -3,9 +3,13 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>MON4RX</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
 <style>
 
@@ -19,6 +23,7 @@ html,body{
     width:100%;
     height:100%;
     overflow:hidden;
+    background:black;
 }
 
 body{
@@ -34,12 +39,34 @@ body{
     position:relative;
 
     background:
-    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    linear-gradient(rgba(0,0,0,0.60),
+    rgba(0,0,0,0.60)),
     url("https://i.imgur.com/bupYX8o.png");
 
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
+}
+
+/* SOFT LIGHT */
+
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:140%;
+    height:140%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,0,140,0.16) 0%,
+    transparent 60%);
+
+    animation:bgMove 20s ease-in-out infinite;
+
+    pointer-events:none;
 }
 
 /* PARTICLES */
@@ -53,13 +80,13 @@ body::before{
     inset:0;
 
     background-image:
-    radial-gradient(#ff008c55 1px,transparent 1px);
+    radial-gradient(#ff008c44 1px,transparent 1px);
 
     background-size:42px 42px;
 
-    animation:particles 22s linear infinite;
+    animation:particles 28s linear infinite;
 
-    opacity:0.22;
+    opacity:0.18;
 
     pointer-events:none;
 }
@@ -78,6 +105,8 @@ body::before{
     position:relative;
 
     z-index:2;
+
+    animation:floatContainer 8s ease-in-out infinite;
 }
 
 /* AVATAR */
@@ -91,16 +120,18 @@ body::before{
 
     object-fit:cover;
 
-    border:3px solid #ff008c;
+    border:2px solid rgba(255,0,140,0.8);
 
     margin-top:15px;
     margin-bottom:25px;
 
     box-shadow:
-    0 0 20px #ff008c,
-    0 0 40px #ff008c;
+    0 0 18px rgba(255,0,140,0.5),
+    0 0 40px rgba(255,0,140,0.25);
 
-    animation:float 5s ease-in-out infinite;
+    animation:
+    avatarFloat 6s ease-in-out infinite,
+    avatarGlow 6s ease-in-out infinite;
 }
 
 /* TITLE */
@@ -109,13 +140,15 @@ h1{
 
     font-size:64px;
 
-    color:#ff008c;
+    color:#ff4db8;
 
     letter-spacing:4px;
 
     margin-bottom:12px;
 
-    animation:glow 5s ease-in-out infinite;
+    animation:
+    glow 7s ease-in-out infinite,
+    flicker 12s infinite;
 }
 
 /* SUBTITLE */
@@ -141,7 +174,15 @@ h1{
     gap:18px;
 }
 
+/* LIQUID GLASS */
+
 a{
+
+    position:relative;
+
+    overflow:hidden;
+
+    isolation:isolate;
 
     text-decoration:none;
 
@@ -151,42 +192,201 @@ a{
 
     padding:18px;
 
-    border-radius:18px;
+    border-radius:24px;
 
-    border:2px solid #ff008c;
+    border:1px solid rgba(255,255,255,0.08);
 
-    background:rgba(0,0,0,0.42);
+    background:
+    linear-gradient(
+    135deg,
+    rgba(0,0,0,0.62),
+    rgba(20,20,20,0.42));
 
-    backdrop-filter:blur(8px);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
 
-    transition:0.35s ease;
+    transition:
+    transform 0.18s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
 
-    box-shadow:
-    0 0 10px rgba(255,0,140,0.22);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    transform-style:preserve-3d;
 }
 
-a:hover{
+/* RANDOM GLOW */
 
-    background:#ff008c;
-
-    transform:scale(1.04);
-
-    box-shadow:
-    0 0 20px #ff008c,
-    0 0 45px #ff008c;
+.buttons a:nth-child(1){
+    animation:
+    glow1 9s ease-in-out infinite,
+    liquid1 14s ease-in-out infinite;
 }
 
-/* DONATE */
+.buttons a:nth-child(2){
+    animation:
+    glow2 12s ease-in-out infinite,
+    liquid2 17s ease-in-out infinite;
+}
 
-.donate{
+.buttons a:nth-child(3){
+    animation:
+    glow3 8s ease-in-out infinite,
+    liquid3 11s ease-in-out infinite;
+}
+
+.buttons a:nth-child(4){
+    animation:
+    glow4 13s ease-in-out infinite,
+    liquid4 18s ease-in-out infinite;
+}
+
+.buttons a:nth-child(5){
+    animation:
+    glow5 10s ease-in-out infinite,
+    liquid5 15s ease-in-out infinite;
+}
+
+/* LIQUID LAYERS */
+
+a::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:24px;
+
+    background:
+
+    radial-gradient(
+    circle at 22% 24%,
+    rgba(255,255,255,0.07),
+    transparent 34%),
+
+    radial-gradient(
+    circle at 80% 32%,
+    rgba(255,0,140,0.06),
+    transparent 42%),
+
+    radial-gradient(
+    circle at 50% 100%,
+    rgba(255,255,255,0.025),
+    transparent 55%);
+
+    mix-blend-mode:screen;
+
+    opacity:0.7;
+}
+
+/* DIFFERENT LIQUID FOR EACH BUTTON */
+
+.buttons a:nth-child(1)::after{
+    animation:liquidMove1 16s ease-in-out infinite;
+}
+
+.buttons a:nth-child(2)::after{
+    animation:liquidMove2 19s ease-in-out infinite;
+}
+
+.buttons a:nth-child(3)::after{
+    animation:liquidMove3 13s ease-in-out infinite;
+}
+
+.buttons a:nth-child(4)::after{
+    animation:liquidMove4 21s ease-in-out infinite;
+}
+
+.buttons a:nth-child(5)::after{
+    animation:liquidMove5 17s ease-in-out infinite;
+}
+
+/* SHINE */
+
+a::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-150%;
+
+    width:70%;
+    height:100%;
 
     background:
     linear-gradient(
     90deg,
-    rgba(255,0,140,0.18),
-    rgba(255,0,140,0.35));
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent);
 
-    animation:donateGlow 4s ease-in-out infinite;
+    transform:skewX(-22deg);
+
+    animation:shine 9s infinite;
+}
+
+/* HOVER */
+
+a:hover{
+
+    transform:
+    scale(1.03)
+    translateY(-2px);
+
+    border:1px solid rgba(255,0,140,0.55);
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(30,30,30,0.75),
+    rgba(255,0,140,0.08));
+
+    box-shadow:
+    0 0 30px rgba(255,0,140,0.38),
+    0 0 65px rgba(255,0,140,0.16),
+    inset 0 0 18px rgba(255,255,255,0.03);
+}
+
+/* CLICK EFFECT */
+
+a:active{
+
+    transform:
+    scale(0.95);
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,0,140,0.42),
+    rgba(255,0,140,0.18));
+
+    border:1px solid rgba(255,0,140,0.9);
+
+    box-shadow:
+    0 0 35px rgba(255,0,140,0.95),
+    0 0 80px rgba(255,0,140,0.45),
+    0 0 120px rgba(255,0,140,0.22);
+
+    color:white;
+}
+
+/* ICONS */
+
+i{
+
+    font-size:22px;
+
+    color:#ff4db8;
+
+    filter:
+    drop-shadow(0 0 8px rgba(255,0,140,0.6));
 }
 
 /* FOOTER */
@@ -195,38 +395,244 @@ a:hover{
 
     margin-top:32px;
 
-    opacity:0.65;
+    opacity:0.6;
 
     letter-spacing:3px;
 
     font-size:14px;
 }
 
-/* ANIMATIONS */
+/* RANDOM GLOWS */
+
+@keyframes glow1{
+
+    0%,100%{
+        box-shadow:
+        0 0 14px rgba(255,0,140,0.15);
+    }
+
+    50%{
+        box-shadow:
+        0 0 32px rgba(255,0,140,0.45);
+    }
+}
+
+@keyframes glow2{
+
+    0%,100%{
+        box-shadow:
+        0 0 16px rgba(255,0,140,0.18);
+    }
+
+    45%{
+        box-shadow:
+        0 0 38px rgba(255,0,140,0.55);
+    }
+}
+
+@keyframes glow3{
+
+    0%,100%{
+        box-shadow:
+        0 0 12px rgba(255,0,140,0.12);
+    }
+
+    55%{
+        box-shadow:
+        0 0 34px rgba(255,0,140,0.38);
+    }
+}
+
+@keyframes glow4{
+
+    0%,100%{
+        box-shadow:
+        0 0 14px rgba(255,0,140,0.16);
+    }
+
+    40%{
+        box-shadow:
+        0 0 42px rgba(255,0,140,0.50);
+    }
+}
+
+@keyframes glow5{
+
+    0%,100%{
+        box-shadow:
+        0 0 18px rgba(255,0,140,0.20);
+    }
+
+    60%{
+        box-shadow:
+        0 0 48px rgba(255,0,140,0.65);
+    }
+}
+
+/* ORGANIC LIQUID */
+
+@keyframes liquidMove1{
+
+    0%{
+        transform:
+        translate(0px,0px)
+        rotate(0deg)
+        scale(1);
+    }
+
+    50%{
+        transform:
+        translate(3px,-2px)
+        rotate(0.5deg)
+        scale(1.02);
+    }
+
+    100%{
+        transform:
+        translate(0px,0px)
+        rotate(0deg)
+        scale(1);
+    }
+}
+
+@keyframes liquidMove2{
+
+    0%{
+        transform:
+        translate(0px,0px)
+        scale(1);
+    }
+
+    50%{
+        transform:
+        translate(-4px,2px)
+        scale(1.03);
+    }
+
+    100%{
+        transform:
+        translate(0px,0px)
+        scale(1);
+    }
+}
+
+@keyframes liquidMove3{
+
+    0%{
+        transform:
+        translate(0px,0px)
+        rotate(0deg);
+    }
+
+    50%{
+        transform:
+        translate(2px,3px)
+        rotate(-0.4deg);
+    }
+
+    100%{
+        transform:
+        translate(0px,0px)
+        rotate(0deg);
+    }
+}
+
+@keyframes liquidMove4{
+
+    0%{
+        transform:
+        translate(0px,0px)
+        scale(1);
+    }
+
+    50%{
+        transform:
+        translate(-2px,-3px)
+        scale(1.025);
+    }
+
+    100%{
+        transform:
+        translate(0px,0px)
+        scale(1);
+    }
+}
+
+@keyframes liquidMove5{
+
+    0%{
+        transform:
+        translate(0px,0px);
+    }
+
+    50%{
+        transform:
+        translate(4px,-1px);
+    }
+
+    100%{
+        transform:
+        translate(0px,0px);
+    }
+}
+
+/* TITLE GLOW */
 
 @keyframes glow{
 
     0%{
         text-shadow:
-        0 0 10px #ff008c,
-        0 0 20px #ff008c;
+        0 0 12px rgba(255,0,140,0.45),
+        0 0 24px rgba(255,0,140,0.18);
     }
 
     50%{
         text-shadow:
-        0 0 18px #ff008c,
-        0 0 38px #ff008c,
-        0 0 60px #ff008c;
+        0 0 30px rgba(255,0,140,1),
+        0 0 60px rgba(255,0,140,0.55),
+        0 0 100px rgba(255,0,140,0.25);
     }
 
     100%{
         text-shadow:
-        0 0 10px #ff008c,
-        0 0 20px #ff008c;
+        0 0 12px rgba(255,0,140,0.45),
+        0 0 24px rgba(255,0,140,0.18);
     }
 }
 
-@keyframes float{
+@keyframes flicker{
+
+    0%,18%,22%,25%,53%,57%,100%{
+        opacity:1;
+    }
+
+    20%,24%,55%{
+        opacity:0.92;
+    }
+}
+
+/* AVATAR */
+
+@keyframes avatarGlow{
+
+    0%{
+        box-shadow:
+        0 0 18px rgba(255,0,140,0.35);
+    }
+
+    50%{
+        box-shadow:
+        0 0 35px rgba(255,0,140,0.7),
+        0 0 60px rgba(255,0,140,0.25);
+    }
+
+    100%{
+        box-shadow:
+        0 0 18px rgba(255,0,140,0.35);
+    }
+}
+
+@keyframes avatarFloat{
 
     0%{
         transform:translateY(0px);
@@ -241,6 +647,8 @@ a:hover{
     }
 }
 
+/* BACKGROUND */
+
 @keyframes particles{
 
     from{
@@ -252,22 +660,44 @@ a:hover{
     }
 }
 
-@keyframes donateGlow{
+@keyframes bgMove{
 
     0%{
-        box-shadow:
-        0 0 12px rgba(255,0,140,0.3);
+        transform:translate(-5%,-5%);
     }
 
     50%{
-        box-shadow:
-        0 0 25px rgba(255,0,140,0.7),
-        0 0 45px rgba(255,0,140,0.35);
+        transform:translate(5%,5%);
     }
 
     100%{
-        box-shadow:
-        0 0 12px rgba(255,0,140,0.3);
+        transform:translate(-5%,-5%);
+    }
+}
+
+@keyframes floatContainer{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+@keyframes shine{
+
+    0%{
+        left:-120%;
+    }
+
+    100%{
+        left:140%;
     }
 }
 
@@ -310,27 +740,31 @@ src="https://i.imgur.com/bwo97U8.png">
 
 <a href="https://youtube.com/@mon4rx_404?si=uBJApwrdJetj6oLw"
 target="_blank">
+<i class="fa-brands fa-youtube"></i>
 YouTube
 </a>
 
 <a href="https://www.tiktok.com/@monarx404?_r=1&_t=ZS-96ENiIWin1o"
 target="_blank">
+<i class="fa-brands fa-tiktok"></i>
 TikTok
 </a>
 
 <a href="https://www.twitch.tv/mon4rx_404"
 target="_blank">
+<i class="fa-brands fa-twitch"></i>
 Twitch
 </a>
 
 <a href="https://t.me/mon4rx_squad"
 target="_blank">
+<i class="fa-brands fa-telegram"></i>
 Telegram
 </a>
 
-<a class="donate"
-href="#">
-💖 Donate
+<a href="#">
+<i class="fa-solid fa-heart"></i>
+Donate
 </a>
 
 </div>
